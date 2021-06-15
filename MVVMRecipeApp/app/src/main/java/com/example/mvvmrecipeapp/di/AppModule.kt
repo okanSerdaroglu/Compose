@@ -1,7 +1,7 @@
 package com.example.mvvmrecipeapp.di
 
 import android.content.Context
-import com.example.mvvmrecipeapp.BaseApplication
+import com.example.mvvmrecipeapp.presentation.BaseApplication
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
