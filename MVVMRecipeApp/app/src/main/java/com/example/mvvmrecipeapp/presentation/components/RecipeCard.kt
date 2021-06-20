@@ -9,11 +9,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.mvvmrecipeapp.R
 import com.example.mvvmrecipeapp.domain.model.Recipe
+import com.example.mvvmrecipeapp.util.DEFAULT_RECIPE_IMAGE
+import com.example.mvvmrecipeapp.util.loadPicture
 
 @Composable
 fun RecipeCard(
@@ -33,14 +34,21 @@ fun RecipeCard(
     ) {
         Column {
             recipe.featuredImage?.let { url ->
-                Image(
-                    painter = painterResource(id = R.drawable.empty_plate),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(225.dp),
-                    contentScale = ContentScale.Crop
-                )
+                val image = loadPicture(
+                    url = url,
+                    defaultImage = DEFAULT_RECIPE_IMAGE
+                ).value
+                image?.let {
+                    Image(
+                        bitmap = it.asImageBitmap(),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(225.dp),
+                        contentScale = ContentScale.Crop
+                    )
+                }
+
             }
             recipe.title?.let { title ->
                 Row(
