@@ -21,7 +21,7 @@ constructor(
 
     val recipes: MutableState<List<Recipe>> = mutableStateOf(ArrayList(listOf()))
 
-    val query = mutableStateOf("Chicken")
+    val query = mutableStateOf("")
 
     init {
         newSearch(query = "Chicken")

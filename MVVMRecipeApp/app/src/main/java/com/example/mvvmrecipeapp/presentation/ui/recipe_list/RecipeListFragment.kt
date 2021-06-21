@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -53,6 +55,8 @@ class RecipeListFragment : Fragment() {
                         elevation = 8.dp,
                     ) {
                         Column {
+
+
                             Row(modifier = Modifier.fillMaxWidth()) {
                                 TextField(
                                     modifier = Modifier
@@ -84,7 +88,18 @@ class RecipeListFragment : Fragment() {
                                     textStyle = TextStyle(color = MaterialTheme.colors.surface),
                                     colors = TextFieldDefaults.textFieldColors(backgroundColor = MaterialTheme.colors.surface),
                                 )
+                            }
 
+                            LazyRow(modifier = Modifier.fillMaxWidth()) // scrollableRow
+                            {
+                                items(getAllFoodCategories()) { item ->
+                                    Text(
+                                        text = item.value,
+                                        style = MaterialTheme.typography.body2,
+                                        color = MaterialTheme.colors.secondary,
+                                        modifier = Modifier.padding(8.dp)
+                                    )
+                                }
                             }
                         }
                     }
